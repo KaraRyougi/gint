@@ -153,7 +153,8 @@ void kinit(u32 *load_info)
 			kmalloc_arena_t *arena = kmalloc(sizeof *arena, NULL);
 			if(arena)
 			{
-				arena->name = names[count];
+				memset(arena, 0, sizeof *arena);
+				arena->name = names[count++];
 				arena->is_default = true;
 				arena->start = (void *)load_arena_start;
 				arena->end = (void *)load_arena_end;
