@@ -176,6 +176,20 @@ int BFile_Seek(int fd, int offset);
    position within an open file! */
 int BFile_GetPos(int fd);
 
+/* BFile_GetBlockAddress(): Get the direct flash address of a file block
+
+   Returns the direct pointer to the 4 KiB storage flash block containing byte
+   [offset] of the open file [fd], storing it in [*addr].
+
+   This call is available on fx-CG (Fugue) models. On fx-9860G models it is not
+   implemented and always returns -1.
+
+   @fd      Open file descriptor
+   @offset  Byte offset within the file
+   @addr    Receives the direct block address in storage flash
+   Returns 0 on success or a negative error code. */
+int BFile_GetBlockAddress(int fd, int offset, void **addr);
+
 //---
 // Error codes
 //---
